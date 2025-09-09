@@ -1,0 +1,8 @@
+[gd_resource type="Environment" format=3 uid="uid://dlcnan23lxmnk"]
+
+[resource]
+ambient_light_energy = 0.0
+sdfgi_cascades = 8
+sdfgi_max_distance = 3276.8
+sdfgi_y_scale = 0
+glow_normalized = true

@@ -1,0 +1,129 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba8iccwvm6yw8"]
+
+[ext_resource type="Script" uid="uid://cn838a7aipcjn" path="res://Scenes/cubetemplate.gd" id="1_60h7j"]
+
+[node name="Template" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+offset_right = 383.0
+offset_bottom = 186.0
+script = ExtResource("1_60h7j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Cube: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "X:"
+
+[node name="YSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Y:"
+
+[node name="ZSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Z:"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Position"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSliderS" type="SpinBox" parent="HBoxContainer2"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "X:"
+
+[node name="YSliderS" type="SpinBox" parent="HBoxContainer2"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Y:"
+
+[node name="ZSliderS" type="SpinBox" parent="HBoxContainer2"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Z:"
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Size"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSliderR" type="SpinBox" parent="HBoxContainer4"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "X:"
+
+[node name="YSliderR" type="SpinBox" parent="HBoxContainer4"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Y:"
+
+[node name="ZSliderR" type="SpinBox" parent="HBoxContainer4"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Z:"
+
+[node name="Label" type="Label" parent="HBoxContainer4"]
+layout_mode = 2
+text = "Rotation"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MaterialSlider" type="SpinBox" parent="HBoxContainer3"]
+custom_minimum_size = Vector2(267.689, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+text = "Material Index"
+
+[connection signal="value_changed" from="HBoxContainer/XSlider" to="." method="_on_x_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/YSlider" to="." method="_on_y_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/ZSlider" to="." method="_on_z_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/XSliderS" to="." method="_on_x_slider_s_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/YSliderS" to="." method="_on_y_slider_s_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/ZSliderS" to="." method="_on_z_slider_s_value_changed"]
+[connection signal="value_changed" from="HBoxContainer4/XSliderR" to="." method="_on_x_slider_r_value_changed"]
+[connection signal="value_changed" from="HBoxContainer4/YSliderR" to="." method="_on_y_slider_r_value_changed"]
+[connection signal="value_changed" from="HBoxContainer4/ZSliderR" to="." method="_on_z_slider_r_value_changed"]
+[connection signal="value_changed" from="HBoxContainer3/MaterialSlider" to="." method="_on_material_slider_value_changed"]

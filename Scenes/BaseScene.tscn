@@ -1,0 +1,615 @@
+[gd_scene load_steps=47 format=3 uid="uid://bjp6ejpaigej7"]
+
+[ext_resource type="Script" uid="uid://bbu4mpdkjgd2d" path="res://Scenes/RTShaderSetup.gd" id="1_brycl"]
+[ext_resource type="Script" uid="uid://o5ihejxay20f" path="res://Scenes/base_scene.gd" id="1_ufl4h"]
+[ext_resource type="Environment" uid="uid://dlcnan23lxmnk" path="res://Env/BaseSceneEnv.tres" id="2_eumj5"]
+[ext_resource type="Script" uid="uid://bqdkfuj75n3k1" path="res://Scenes/camera_3d.gd" id="3_58y5n"]
+[ext_resource type="Script" uid="uid://cqsq0fsclqigp" path="res://Scenes/ui.gd" id="4_yga4i"]
+[ext_resource type="Script" uid="uid://b1hlplu1loihx" path="res://Classes/RtSphere.gd" id="5_4ksr6"]
+[ext_resource type="Script" uid="uid://dvrx7f10s7xn8" path="res://Scenes/BasicSettings.gd" id="5_uc7fm"]
+[ext_resource type="Script" uid="uid://bpx8ps4ke0nsq" path="res://Classes/RtCube.gd" id="7_56e3h"]
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_brycl"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = false
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_brycl")
+UpdateShader = false
+initialized = true
+rays_per_pixel = 1
+max_bounces = 5
+metadata/_custom_type_script = "uid://bbu4mpdkjgd2d"
+
+[sub_resource type="Compositor" id="Compositor_ctfd7"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_brycl")])
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_yga4i"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = false
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_brycl")
+UpdateShader = false
+initialized = false
+rays_per_pixel = 1
+max_bounces = 5
+metadata/_custom_type_script = "uid://bbu4mpdkjgd2d"
+
+[sub_resource type="Compositor" id="Compositor_4ksr6"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yga4i")])
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56e3h"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eumj5"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_56e3h")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbiut"]
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_orcbb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_sbiut")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhixo"]
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_x613b"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_hhixo")
+radius = 19.0
+height = 38.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulyj0"]
+albedo_color = Color(1, 0, 1, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_u5ctk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ulyj0")
+radius = 19.0
+height = 38.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1whss"]
+albedo_color = Color(0, 0.355487, 0.797517, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eo2kd"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_1whss")
+radius = 100.0
+height = 200.0
+rings = 256
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ib54o"]
+albedo_color = Color(0.932771, 0.663066, 0.43524, 1)
+metallic = 1.0
+roughness = 0.703
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ygq3m"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ib54o")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7pus"]
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gf2b2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_d7pus")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85yrk"]
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gvcvg"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_85yrk")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41mr8"]
+albedo_color = Color(0.780115, 0, 0.379405, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wafdh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_41mr8")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxglu"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dhjy8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_gxglu")
+size = Vector3(5, 1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwf5d"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_s46ta"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_fwf5d")
+size = Vector3(5, 1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg1u3"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_tca0x"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_sg1u3")
+size = Vector3(1, 7, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1fcg"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ripiw"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_q1fcg")
+size = Vector3(1, 7, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37ykq"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_54hg7"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_37ykq")
+size = Vector3(7, 7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13a8i"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ihig1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_13a8i")
+size = Vector3(7, 7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv0y4"]
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_fcmy5"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_kv0y4")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_di8lw"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_km0pw"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_di8lw")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ufl4h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_eumj5")
+compositor = SubResource("Compositor_ctfd7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.605345, 7.82467)
+environment = ExtResource("2_eumj5")
+compositor = SubResource("Compositor_4ksr6")
+fov = 45.0
+near = 0.1
+far = 100.0
+script = ExtResource("3_58y5n")
+
+[node name="UI" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_yga4i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Camera3D/UI/HBoxContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="Camera3D/UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = ">"
+metadata/_edit_use_anchors_ = true
+
+[node name="Padding" type="Control" parent="Camera3D/UI/HBoxContainer"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/UI/HBoxContainer/Padding"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.545098)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect"]
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer"]
+layout_mode = 2
+
+[node name="Main" type="VBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("5_uc7fm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/HBoxContainer"]
+custom_minimum_size = Vector2(440, 31)
+layout_mode = 2
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="Label" type="Label" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/HBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RenderLabel" type="Label" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+text = "Last Render: 10ms"
+
+[node name="FPSLabel" type="Label" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+text = "FPS: 100"
+
+[node name="AccumulateCheck" type="CheckBox" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+focus_mode = 1
+button_pressed = true
+text = "Accumulate"
+
+[node name="VSyncCheck" type="CheckBox" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+focus_mode = 1
+button_pressed = true
+text = "V-Sync"
+
+[node name="EnableRtx" type="CheckBox" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+focus_mode = 1
+text = "Enable Ray-Tracing"
+
+[node name="RaysPerPixelSlider" type="SpinBox" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+focus_mode = 1
+min_value = 1.0
+value = 1.0
+suffix = "Ray(s) Per Pixel"
+
+[node name="MaxBouncesSlider" type="SpinBox" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+min_value = 1.0
+max_value = 500.0
+value = 5.0
+suffix = "Max Bounce(s)"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main"]
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+edit_alpha = false
+
+[node name="Label" type="Label" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/HBoxContainer2"]
+layout_mode = 2
+text = "Sky Color"
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect"]
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 540.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+
+[node name="SpherePropPanel" type="VBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer2/SpherePropPanel"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer2/SpherePropPanel/HBoxContainer"]
+custom_minimum_size = Vector2(440, 31)
+layout_mode = 2
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="Label" type="Label" parent="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer2/SpherePropPanel/HBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scene Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BarResize" type="Control" parent="Camera3D/UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -2.5
+offset_bottom = 2.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(220, 2.5)
+mouse_default_cursor_shape = 9
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/UI/BarResize"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Spheres" type="Node3D" parent="."]
+
+[node name="RtSphere" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887688, -1.49578, 0)
+visible = false
+mesh = SubResource("SphereMesh_eumj5")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+roughness = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere9" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00393063, 0.713891, -1.33551)
+visible = false
+mesh = SubResource("SphereMesh_orcbb")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+roughness = 0.0
+specular_probability = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere2" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 14, 0)
+visible = false
+mesh = SubResource("SphereMesh_x613b")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+radius = 19.0
+emission_power = 5.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere7" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00252533, 14, -49.633)
+visible = false
+mesh = SubResource("SphereMesh_u5ctk")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+radius = 19.0
+albedo = Color(1, 0, 1, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere3" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -101, 0)
+visible = false
+mesh = SubResource("SphereMesh_eo2kd")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+radius = 100.0
+rings = 256
+albedo = Color(0, 0.355487, 0.797517, 1)
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere4" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.213, -0.05, 0)
+visible = false
+mesh = SubResource("SphereMesh_ygq3m")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+albedo = Color(0.932771, 0.663066, 0.43524, 1)
+roughness = 0.703
+metallic = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere5" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0284338, -0.05, -3.58783)
+visible = false
+mesh = SubResource("SphereMesh_gf2b2")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+roughness = 0.0
+metallic = 1.0
+specular_probability = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere6" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95064, -0.05, -0.0354992)
+visible = false
+mesh = SubResource("SphereMesh_gvcvg")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+roughness = 0.0
+metallic = 1.0
+specular_probability = 0.395
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="RtSphere8" type="MeshInstance3D" parent="Spheres"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47574, -0.05, 2.78533)
+visible = false
+mesh = SubResource("SphereMesh_wafdh")
+skeleton = NodePath("../..")
+script = ExtResource("5_4ksr6")
+albedo = Color(0.780115, 0, 0.379405, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://b1hlplu1loihx"
+
+[node name="Cubes" type="Node3D" parent="."]
+
+[node name="RtCube" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99956, 0)
+mesh = SubResource("BoxMesh_dhjy8")
+script = ExtResource("7_56e3h")
+size = Vector3(5, 1, 16)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube4" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00044, 0)
+mesh = SubResource("BoxMesh_s46ta")
+script = ExtResource("7_56e3h")
+size = Vector3(5, 1, 16)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube2" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.000443146, 0)
+mesh = SubResource("BoxMesh_tca0x")
+script = ExtResource("7_56e3h")
+size = Vector3(1, 7, 16)
+albedo = Color(1, 0, 0, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube3" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.000443146, 0)
+mesh = SubResource("BoxMesh_ripiw")
+script = ExtResource("7_56e3h")
+size = Vector3(1, 7, 16)
+albedo = Color(0, 1, 0, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube5" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+mesh = SubResource("BoxMesh_54hg7")
+script = ExtResource("7_56e3h")
+size = Vector3(7, 7, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube7" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.5)
+mesh = SubResource("BoxMesh_ihig1")
+script = ExtResource("7_56e3h")
+size = Vector3(7, 7, 1)
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube6" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54979, 0)
+mesh = SubResource("BoxMesh_fcmy5")
+script = ExtResource("7_56e3h")
+size = Vector3(1, 0.1, 1)
+roughness = 0.0
+emission_power = 10.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[node name="RtCube8" type="MeshInstance3D" parent="Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29578, -1.99704, 0)
+visible = false
+mesh = SubResource("BoxMesh_km0pw")
+script = ExtResource("7_56e3h")
+roughness = 1.0
+metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
+
+[connection signal="pressed" from="Camera3D/UI/HBoxContainer/VBoxContainer/Button" to="Camera3D/UI" method="_on_button_pressed"]
+[connection signal="toggled" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/AccumulateCheck" to="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main" method="_on_accumulate_check_toggled"]
+[connection signal="toggled" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/VSyncCheck" to="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main" method="_on_v_sync_check_toggled"]
+[connection signal="toggled" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/EnableRtx" to="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main" method="_on_enable_rtx_toggled"]
+[connection signal="value_changed" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/RaysPerPixelSlider" to="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main" method="_on_rays_per_pixel_slider_value_changed"]
+[connection signal="value_changed" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/MaxBouncesSlider" to="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main" method="_on_max_bounces_slider_value_changed"]
+[connection signal="color_changed" from="Camera3D/UI/HBoxContainer/Padding/ColorRect/ScrollContainer/VBoxContainer/Main/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="gui_input" from="Camera3D/UI/BarResize" to="Camera3D/UI" method="_on_bar_resize_gui_input"]

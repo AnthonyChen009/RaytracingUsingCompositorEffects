@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvlo5dt4eb803"]
+
+[ext_resource type="Script" uid="uid://d2moq7vyigmxa" path="res://Scenes/template.gd" id="1_6elof"]
+
+[node name="Template" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+script = ExtResource("1_6elof")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Sphere: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "X:"
+
+[node name="YSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Y:"
+
+[node name="ZSlider" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+min_value = -1e+08
+max_value = 1e+08
+step = 0.1
+alignment = 1
+prefix = "Z:"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Position"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RadiusSlider" type="SpinBox" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(267.689, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Radius"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MaterialSlider" type="SpinBox" parent="HBoxContainer3"]
+custom_minimum_size = Vector2(267.689, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+text = "Material Index"
+
+[connection signal="value_changed" from="HBoxContainer/XSlider" to="." method="_on_x_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/YSlider" to="." method="_on_y_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/ZSlider" to="." method="_on_z_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/RadiusSlider" to="." method="_on_radius_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer3/MaterialSlider" to="." method="_on_material_slider_value_changed"]

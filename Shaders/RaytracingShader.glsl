@@ -203,7 +203,7 @@ vec3 GetAABBNormal(vec3 hitPos, vec3 boxMin, vec3 boxMax) {
 }
 
 vec3 GetOBBNormal(vec3 hitPosWorld, Cube cube) {
-    mat3 R  = rotationMatrix(cube.Rotation);
+    mat3 R = rotationMatrix(cube.Rotation);
     mat3 RT = transpose(R);
 
     vec3 hitLocal = RT * (hitPosWorld - cube.Position);
@@ -266,10 +266,11 @@ bool IntersectCube(Ray ray, Cube cube, out float tHit) {
     float tEnter = max(max(tmin.x, tmin.y), tmin.z);
     float tExit  = min(min(tmax.x, tmax.y), tmax.z);
 
-    if (tExit < 1e-4 || tEnter > tExit) return false;
+    if (tEnter < 1e-4 || tEnter > tExit)
+    return false;
 
-    tHit = (tEnter < 1e-4) ? tExit : tEnter;
-    return tHit > 0.0;
+    tHit = tEnter;
+    return true;
 }
 
 

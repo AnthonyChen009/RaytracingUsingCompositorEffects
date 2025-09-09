@@ -43,68 +43,68 @@ metadata/_custom_type_script = "uid://bbu4mpdkjgd2d"
 [sub_resource type="Compositor" id="Compositor_4ksr6"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yga4i")])
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56e3h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eumj5"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_eumj5"]
+[sub_resource type="SphereMesh" id="SphereMesh_sbiut"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_56e3h")
+material = SubResource("StandardMaterial3D_eumj5")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbiut"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orcbb"]
 roughness = 0.0
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_orcbb"]
+[sub_resource type="SphereMesh" id="SphereMesh_hhixo"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_sbiut")
+material = SubResource("StandardMaterial3D_orcbb")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhixo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x613b"]
 roughness = 0.5
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 5.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_x613b"]
+[sub_resource type="SphereMesh" id="SphereMesh_ulyj0"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_hhixo")
+material = SubResource("StandardMaterial3D_x613b")
 radius = 19.0
 height = 38.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulyj0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5ctk"]
 albedo_color = Color(1, 0, 1, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_u5ctk"]
+[sub_resource type="SphereMesh" id="SphereMesh_1whss"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ulyj0")
+material = SubResource("StandardMaterial3D_u5ctk")
 radius = 19.0
 height = 38.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1whss"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo2kd"]
 albedo_color = Color(0, 0.355487, 0.797517, 1)
 roughness = 0.5
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_eo2kd"]
+[sub_resource type="SphereMesh" id="SphereMesh_ib54o"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_1whss")
+material = SubResource("StandardMaterial3D_eo2kd")
 radius = 100.0
 height = 200.0
 rings = 256
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ib54o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygq3m"]
 albedo_color = Color(0.932771, 0.663066, 0.43524, 1)
 metallic = 1.0
 roughness = 0.703
@@ -112,131 +112,131 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_ygq3m"]
+[sub_resource type="SphereMesh" id="SphereMesh_d7pus"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ib54o")
+material = SubResource("StandardMaterial3D_ygq3m")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7pus"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf2b2"]
 metallic = 1.0
 roughness = 0.0
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_gf2b2"]
+[sub_resource type="SphereMesh" id="SphereMesh_85yrk"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_d7pus")
+material = SubResource("StandardMaterial3D_gf2b2")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85yrk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvcvg"]
 metallic = 1.0
 roughness = 0.0
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_gvcvg"]
+[sub_resource type="SphereMesh" id="SphereMesh_41mr8"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_85yrk")
+material = SubResource("StandardMaterial3D_gvcvg")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41mr8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wafdh"]
 albedo_color = Color(0.780115, 0, 0.379405, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_wafdh"]
+[sub_resource type="SphereMesh" id="SphereMesh_gxglu"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_41mr8")
+material = SubResource("StandardMaterial3D_wafdh")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxglu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhjy8"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_dhjy8"]
+[sub_resource type="BoxMesh" id="BoxMesh_fwf5d"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_gxglu")
+material = SubResource("StandardMaterial3D_dhjy8")
 size = Vector3(5, 1, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwf5d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s46ta"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_s46ta"]
+[sub_resource type="BoxMesh" id="BoxMesh_sg1u3"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_fwf5d")
+material = SubResource("StandardMaterial3D_s46ta")
 size = Vector3(5, 1, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg1u3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tca0x"]
 albedo_color = Color(1, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_tca0x"]
+[sub_resource type="BoxMesh" id="BoxMesh_q1fcg"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_sg1u3")
+material = SubResource("StandardMaterial3D_tca0x")
 size = Vector3(1, 7, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1fcg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ripiw"]
 albedo_color = Color(0, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_ripiw"]
+[sub_resource type="BoxMesh" id="BoxMesh_37ykq"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_q1fcg")
+material = SubResource("StandardMaterial3D_ripiw")
 size = Vector3(1, 7, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37ykq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54hg7"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_54hg7"]
+[sub_resource type="BoxMesh" id="BoxMesh_13a8i"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_37ykq")
+material = SubResource("StandardMaterial3D_54hg7")
 size = Vector3(7, 7, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13a8i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihig1"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_ihig1"]
+[sub_resource type="BoxMesh" id="BoxMesh_kv0y4"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_13a8i")
+material = SubResource("StandardMaterial3D_ihig1")
 size = Vector3(7, 7, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv0y4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcmy5"]
 roughness = 0.0
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 10.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_fcmy5"]
+[sub_resource type="BoxMesh" id="BoxMesh_di8lw"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_kv0y4")
+material = SubResource("StandardMaterial3D_fcmy5")
 size = Vector3(1, 0.1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_di8lw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_km0pw"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_km0pw"]
+[sub_resource type="BoxMesh" id="BoxMesh_u5fsu"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_di8lw")
+material = SubResource("StandardMaterial3D_km0pw")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ufl4h")
@@ -445,7 +445,7 @@ mouse_filter = 2
 [node name="RtSphere" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887688, -1.49578, 0)
 visible = false
-mesh = SubResource("SphereMesh_eumj5")
+mesh = SubResource("SphereMesh_sbiut")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 roughness = 1.0
@@ -454,7 +454,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere9" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00393063, 0.713891, -1.33551)
 visible = false
-mesh = SubResource("SphereMesh_orcbb")
+mesh = SubResource("SphereMesh_hhixo")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 roughness = 0.0
@@ -464,7 +464,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere2" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 14, 0)
 visible = false
-mesh = SubResource("SphereMesh_x613b")
+mesh = SubResource("SphereMesh_ulyj0")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 radius = 19.0
@@ -474,7 +474,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere7" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00252533, 14, -49.633)
 visible = false
-mesh = SubResource("SphereMesh_u5ctk")
+mesh = SubResource("SphereMesh_1whss")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 radius = 19.0
@@ -485,7 +485,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere3" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -101, 0)
 visible = false
-mesh = SubResource("SphereMesh_eo2kd")
+mesh = SubResource("SphereMesh_ib54o")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 radius = 100.0
@@ -496,7 +496,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere4" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.213, -0.05, 0)
 visible = false
-mesh = SubResource("SphereMesh_ygq3m")
+mesh = SubResource("SphereMesh_d7pus")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 albedo = Color(0.932771, 0.663066, 0.43524, 1)
@@ -507,7 +507,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere5" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0284338, -0.05, -3.58783)
 visible = false
-mesh = SubResource("SphereMesh_gf2b2")
+mesh = SubResource("SphereMesh_85yrk")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 roughness = 0.0
@@ -518,7 +518,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere6" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95064, -0.05, -0.0354992)
 visible = false
-mesh = SubResource("SphereMesh_gvcvg")
+mesh = SubResource("SphereMesh_41mr8")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 roughness = 0.0
@@ -529,7 +529,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 [node name="RtSphere8" type="MeshInstance3D" parent="Spheres"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47574, -0.05, 2.78533)
 visible = false
-mesh = SubResource("SphereMesh_wafdh")
+mesh = SubResource("SphereMesh_gxglu")
 skeleton = NodePath("../..")
 script = ExtResource("5_4ksr6")
 albedo = Color(0.780115, 0, 0.379405, 1)
@@ -540,7 +540,7 @@ metadata/_custom_type_script = "uid://b1hlplu1loihx"
 
 [node name="RtCube" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99956, 0)
-mesh = SubResource("BoxMesh_dhjy8")
+mesh = SubResource("BoxMesh_fwf5d")
 script = ExtResource("7_56e3h")
 size = Vector3(5, 1, 16)
 roughness = 1.0
@@ -548,7 +548,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube4" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00044, 0)
-mesh = SubResource("BoxMesh_s46ta")
+mesh = SubResource("BoxMesh_sg1u3")
 script = ExtResource("7_56e3h")
 size = Vector3(5, 1, 16)
 roughness = 1.0
@@ -556,7 +556,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube2" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.000443146, 0)
-mesh = SubResource("BoxMesh_tca0x")
+mesh = SubResource("BoxMesh_q1fcg")
 script = ExtResource("7_56e3h")
 size = Vector3(1, 7, 16)
 albedo = Color(1, 0, 0, 1)
@@ -565,7 +565,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube3" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.000443146, 0)
-mesh = SubResource("BoxMesh_ripiw")
+mesh = SubResource("BoxMesh_37ykq")
 script = ExtResource("7_56e3h")
 size = Vector3(1, 7, 16)
 albedo = Color(0, 1, 0, 1)
@@ -574,7 +574,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube5" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-mesh = SubResource("BoxMesh_54hg7")
+mesh = SubResource("BoxMesh_13a8i")
 script = ExtResource("7_56e3h")
 size = Vector3(7, 7, 1)
 roughness = 1.0
@@ -582,7 +582,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube7" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.5)
-mesh = SubResource("BoxMesh_ihig1")
+mesh = SubResource("BoxMesh_kv0y4")
 script = ExtResource("7_56e3h")
 size = Vector3(7, 7, 1)
 roughness = 1.0
@@ -590,7 +590,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 
 [node name="RtCube6" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54979, 0)
-mesh = SubResource("BoxMesh_fcmy5")
+mesh = SubResource("BoxMesh_di8lw")
 script = ExtResource("7_56e3h")
 size = Vector3(1, 0.1, 1)
 roughness = 0.0
@@ -600,7 +600,7 @@ metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"
 [node name="RtCube8" type="MeshInstance3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29578, -1.99704, 0)
 visible = false
-mesh = SubResource("BoxMesh_km0pw")
+mesh = SubResource("BoxMesh_u5fsu")
 script = ExtResource("7_56e3h")
 roughness = 1.0
 metadata/_custom_type_script = "uid://bpx8ps4ke0nsq"

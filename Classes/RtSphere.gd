@@ -11,7 +11,10 @@ class_name RtSphere extends MeshInstance3D
 @export var emission_color: Color = Color(1, 1, 1, 1) : set = _set_emission_color
 @export var emission_power: float = 0.0 : set = _set_emission_power
 @export_range(0.0, 1.0, 0.001) var specular_probability: float = 0
-
+@export var is_glass: bool = false
+@export_range(1.0, 3.0, 0.01) var ior: float = 1.0
+@export var absorbtion: Color = Color(0, 0, 0, 1) : set = _set_emission_color
+@export var absorbtion_power: float = 1.0
 @export var material_index: int = 0
 var sphere_index
 

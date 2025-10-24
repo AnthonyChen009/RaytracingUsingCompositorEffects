@@ -14,6 +14,10 @@ struct Material {
     vec3 EmissionColor;
     float EmissionPower;
     float specularProbability;
+    float isGlass;
+    float ior;
+    float absorptionStrength;
+    vec3 absorption;
 };
 
 struct Model {
@@ -36,8 +40,15 @@ struct HitPayload {
     vec3 WorldNormal;
     int ObjectIndex;
     int HitType;
+    bool isBackface;
 };
 
+struct LightPayload {
+    vec3 reflectDir;
+    vec3 refractDir;
+    float reflectWeight;
+    float refractWeight;
+};
 
 struct Cube {
     vec3 Position;
@@ -135,32 +146,24 @@ float RandomValueNormalDistribution(inout uint seed) {
 }
 
 mat3 rotationMatrix(vec3 euler) {
-
     float cx = cos(euler.x), sx = sin(euler.x);
     float cy = cos(euler.y), sy = sin(euler.y);
     float cz = cos(euler.z), sz = sin(euler.z);
-
-    // Rx (columns)
     mat3 rx = mat3(
         1.0, 0.0, 0.0,  
         0.0, cx, sx, 
         0.0, -sx, cx
     );
-
-    // Ry (columns)
     mat3 ry = mat3(
-          cy, 0.0, -sy,
-         0.0, 1.0, 0.0, 
-          sy, 0.0, cy 
+        cy, 0.0, -sy,
+        0.0, 1.0, 0.0, 
+        sy, 0.0, cy 
     );
-
     mat3 rz = mat3(
-          cz,  sz, 0.0, 
-         -sz,  cz, 0.0,  
-         0.0, 0.0, 1.0 
+        cz, sz, 0.0, 
+        -sz, cz, 0.0,  
+        0.0, 0.0, 1.0 
     );
-
-  
     return rz * ry * rx;
 }
 
@@ -203,14 +206,44 @@ vec3 GetAABBNormal(vec3 hitPos, vec3 boxMin, vec3 boxMax) {
 }
 
 vec3 GetOBBNormal(vec3 hitPosWorld, Cube cube) {
-    mat3 R = rotationMatrix(cube.Rotation);
+    mat3 R  = rotationMatrix(cube.Rotation);
     mat3 RT = transpose(R);
 
     vec3 hitLocal = RT * (hitPosWorld - cube.Position);
 
-    vec3 nLocal = GetAABBNormal(hitLocal, -cube.Size, cube.Size);
+    float eps = 1e-4;
+    vec3 nLocal = GetAABBNormal(hitLocal, -cube.Size - eps, cube.Size + eps);
 
     return normalize(R * nLocal);
+}
+
+float CalculateReflectance(vec3 inDir, vec3 normal, float iorA, float iorB) {
+    float refractRatio = iorA / iorB;
+    float cosAngleIn = -dot(inDir, normal);
+    float sinSqrAngleOfRefraction = refractRatio * refractRatio * (1.0 - cosAngleIn * cosAngleIn);
+
+
+    if (sinSqrAngleOfRefraction >= 1.0)
+        return 1.0;
+
+    float cosAngleOfRefraction = sqrt(1.0 - sinSqrAngleOfRefraction);
+
+    float denominatorPerpendicular = iorA * cosAngleIn + iorB * cosAngleOfRefraction;
+    float denominatorParallel     = iorA * cosAngleIn + iorB * cosAngleOfRefraction;
+
+    if (min(denominatorPerpendicular, denominatorParallel) < 1e-8)
+        return 1.0;
+
+    // Perpendicular polarization
+    float rPerpendicular = (iorA * cosAngleIn - iorB * cosAngleOfRefraction) / denominatorPerpendicular;
+    rPerpendicular *= rPerpendicular;
+
+    // Parallel polarization
+    float rParallel = (iorB * cosAngleIn - iorA * cosAngleOfRefraction) / denominatorParallel;
+    rParallel *= rParallel;
+
+    // Average of both
+    return 0.5 * (rPerpendicular + rParallel);
 }
 
 HitPayload Miss(Ray ray) {
@@ -220,24 +253,27 @@ HitPayload Miss(Ray ray) {
     return payload;
 }
 
-HitPayload ClosestHit(Ray ray, float hitDistance, int ObjectIndex, int hitType) {
+HitPayload ClosestHit(Ray ray, float hitDistance, int ObjectIndex, int hitType, bool isBackface) {
     HitPayload payload;
     payload.HitDistance = hitDistance;
     payload.ObjectIndex = ObjectIndex;
     payload.HitType = hitType;
-
+    payload.isBackface = isBackface;
+    bool isGlass = false;
 
     vec3 hitPos = ray.Origin + ray.Direction * hitDistance;
     payload.WorldPosition = hitPos;
 
     if (hitType == 0) {
         Sphere sphere = spheres.spheres[ObjectIndex];
+        isGlass = materials.materials[int(sphere.MaterialIndex)].isGlass != 0.0;
         vec3 v = hitPos - sphere.Position;
         float invLen = inversesqrt(dot(v, v));
         payload.WorldNormal = v * invLen;
     }
     else if (hitType == 1) {
         Cube cube = cubes[ObjectIndex];
+        isGlass = materials.materials[int(cube.MaterialIndex)].isGlass != 0.0;
         payload.WorldNormal = GetOBBNormal(hitPos, cube);
     }
     else {
@@ -245,20 +281,41 @@ HitPayload ClosestHit(Ray ray, float hitDistance, int ObjectIndex, int hitType) 
         payload.WorldNormal = vec3(0.0, 0.0, 0.0);
     }
 
+    if (isGlass) {
+        if (dot(payload.WorldNormal, ray.Direction) > 0.0) {
+            payload.WorldNormal = -payload.WorldNormal;
+        }
+    }
     return payload;
 }
 
-bool IntersectCube(Ray ray, Cube cube, out float tHit) {
-    mat3 rot = rotationMatrix(cube.Rotation);
+
+LightPayload CalculateReflectionAndRefraction(vec3 inDir, vec3 normal, float iorA, float iorB) {
+    LightPayload res;
+
+    res.reflectDir = reflect(inDir, normal);
+    res.refractDir = refract(inDir, normal, iorA / iorB);
+
+    res.reflectWeight = CalculateReflectance(inDir, normal, iorA, iorB);
+    res.refractWeight = 1 - res.reflectWeight;
+
+    return res;
+}
+
+float sgnNonZero(float x) { return x >= 0.0 ? 1.0 : -1.0; }
+
+bool IntersectCube(Ray ray, Cube cube, out float tHit, out vec3 hitNormal, bool cullBackfaces) {
+    // Rotate ray into cube-local space
+    mat3 rot    = rotationMatrix(cube.Rotation);
     mat3 invRot = transpose(rot);
 
     vec3 localOrigin = invRot * (ray.Origin - cube.Position);
     vec3 localDir    = invRot * ray.Direction;
+    vec3 invDir      = 1.0 / localDir;
 
-    vec3 invDir = 1.0 / localDir;
-
-    vec3 t0 = (-cube.Size - localOrigin) * invDir;
-    vec3 t1 = (cube.Size - localOrigin) * invDir;
+    // Slabs
+    vec3 t0 = (-cube.Size - localOrigin) * invDir; // near
+    vec3 t1 = ( cube.Size - localOrigin) * invDir; // far
 
     vec3 tmin = min(t0, t1);
     vec3 tmax = max(t0, t1);
@@ -266,10 +323,34 @@ bool IntersectCube(Ray ray, Cube cube, out float tHit) {
     float tEnter = max(max(tmin.x, tmin.y), tmin.z);
     float tExit  = min(min(tmax.x, tmax.y), tmax.z);
 
-    if (tEnter < 1e-4 || tEnter > tExit)
-    return false;
+    if (tEnter > tExit || tExit < 0.0)
+        return false;
 
-    tHit = tEnter;
+    // Choose the actual hit
+    bool useEnter = (tEnter > 0.0);
+    tHit = useEnter ? tEnter : tExit;
+
+    // --- Normal from tHit (NOT always from tEnter) ---
+    vec3 nLocal = vec3(0.0);
+    if (useEnter) {
+        // entering face: outward normal opposes ray direction on the dominant tmin axis
+        if (tmin.x >= tmin.y && tmin.x >= tmin.z) nLocal = vec3(-sgnNonZero(localDir.x), 0.0, 0.0);
+        else if (tmin.y >= tmin.z)                nLocal = vec3(0.0, -sgnNonZero(localDir.y), 0.0);
+        else                                      nLocal = vec3(0.0, 0.0, -sgnNonZero(localDir.z));
+    } else {
+        // exiting face: outward normal aligns with ray direction on the dominant tmax axis
+        if (tmax.x <= tmax.y && tmax.x <= tmax.z) nLocal = vec3( sgnNonZero(localDir.x), 0.0, 0.0);
+        else if (tmax.y <= tmax.z)                nLocal = vec3(0.0,  sgnNonZero(localDir.y), 0.0);
+        else                                      nLocal = vec3(0.0, 0.0,  sgnNonZero(localDir.z));
+    }
+
+    vec3 worldNormal = normalize(rot * nLocal);
+
+    // Correct backface culling: cull when ray goes WITH the outward normal
+    if (cullBackfaces && dot(worldNormal, ray.Direction) > 0.0)
+        return false;
+
+    hitNormal = worldNormal;
     return true;
 }
 
@@ -278,7 +359,7 @@ HitPayload TraceRay(Ray ray) {
     int closestIndex = -1;
     float hitDistance = 3.402823466e+38;
     int hitType = -1;
-
+    vec3 hitNormal;
     for (int i = 0; i < params.sphereCount; i++) {
         Sphere sphere = spheres.spheres[i];
 
@@ -293,23 +374,42 @@ HitPayload TraceRay(Ray ray) {
             continue;
         }
 
-        float closestT = (-b - sqrt(discriminant)) / (2.0 * a);
+        float t0 = (-b - sqrt(discriminant)) / (2.0 * a);
+        float t1 = (-b + sqrt(discriminant)) / (2.0 * a);
+
+        if (t0 > t1) { float tmp = t0; t0 = t1; t1 = tmp; } // swap
+        float closestT = (t0 > 0.0) ? t0 : t1;
+
+
         // float t0 = (-b + sqrt(discriminant)) / (2.0 * a);
         if (closestT > 0.0 && closestT < hitDistance) {
+            vec3 hitPoint = ray.Origin + ray.Direction * closestT;
+            vec3 tempNormal = normalize(hitPoint - sphere.Position);
+            bool isGlass = materials.materials[int(sphere.MaterialIndex)].isGlass != 0.0;
+            
+            if (!isGlass && dot(tempNormal, ray.Direction) > 0.0) {
+                continue;
+            }
+
             hitDistance = closestT;
             closestIndex = i;
             hitType = 0;
+            hitNormal = tempNormal;
         }
     }
     // handle cubes
     for (int i = 0; i < params.cubeCount; i++) {
         Cube cube = cubes[i];
+        bool isGlass = materials.materials[int(cube.MaterialIndex)].isGlass != 0.0;
         float rayHit;
-        if (IntersectCube(ray, cube, rayHit)) {
+        vec3 tempNormal;
+        //!isGlass because we dont want to cull when the material is glass
+        if (IntersectCube(ray, cube, rayHit, tempNormal, !isGlass)) {
             if (rayHit > 0.0 && rayHit < hitDistance) {
                 hitDistance = rayHit;
                 closestIndex = i;
                 hitType = 1;
+                hitNormal = tempNormal;
             }
         }
     }
@@ -317,13 +417,13 @@ HitPayload TraceRay(Ray ray) {
     if (closestIndex < 0) {
         return Miss(ray);
     }
+    bool is_backface = dot(hitNormal, ray.Direction) > 0.0;
 
-    return ClosestHit(ray, hitDistance, closestIndex, hitType);
+    return ClosestHit(ray, hitDistance, closestIndex, hitType, is_backface);
 }
 
 
 vec4 PerPixel(int x, int y) {
-
     Ray ray;
     ray.Origin = camera_data.cameraPosition.xyz;
     ray.Direction = ray_directions.ray_directions[x + y * int(params.raster_size.x)].xyz;
@@ -352,16 +452,34 @@ vec4 PerPixel(int x, int y) {
             Cube cube = cubes[int(payload.ObjectIndex)];
             material = materials.materials[int(cube.MaterialIndex)];
         }
+        bool isGlass = material.isGlass != 0.0;
         float eps = 1e-4 * max(1.0, abs(payload.HitDistance));
-        ray.Origin = payload.WorldPosition + payload.WorldNormal * eps;
-        vec3 diffuseDir = payload.WorldNormal + RandomDirection(seed);
-        vec3 specularDir = reflect(ray.Direction, payload.WorldNormal);
-        bool isSpecularBounce = material.specularProbability >= randomFloat(seed);
-        ray.Direction = mix(diffuseDir, specularDir, (1.0 - material.Roughness) * float(isSpecularBounce));
+        if (!isGlass) {
+            bool isSpecularBounce = material.specularProbability >= randomFloat(seed);
+            ray.Origin = payload.WorldPosition + payload.WorldNormal * eps;
+            vec3 diffuseDir = normalize(payload.WorldNormal + RandomDirection(seed));
+            vec3 specularDir = reflect(ray.Direction, payload.WorldNormal);
+            
+            ray.Direction = normalize(mix(diffuseDir, specularDir, (1.0 - material.Roughness) * float(isSpecularBounce)));
 
-        vec3 emittedLight = material.EmissionColor * material.EmissionPower;
-        light += emittedLight * throughput;
-        throughput *= mix(material.Albedo, vec3(1.0, 1.0, 1.0), float(isSpecularBounce));
+            vec3 emittedLight = material.EmissionColor * material.EmissionPower;
+            light += emittedLight * throughput;
+            throughput *= mix(material.Albedo, vec3(1.0, 1.0, 1.0), float(isSpecularBounce));
+        }
+        else if (isGlass) {
+            if (payload.isBackface) {
+                throughput *= exp(-payload.HitDistance * material.absorption * material.absorptionStrength);
+            }
+            float iorCurrent = payload.isBackface ? material.ior : 1.0;
+            float iorNext = payload.isBackface ? 1.0 : material.ior;
+            LightPayload lp = CalculateReflectionAndRefraction(ray.Direction, payload.WorldNormal, iorCurrent, iorNext);
+            vec3 diffuseDir = normalize(payload.WorldNormal + RandomDirection(seed));
+            lp.reflectDir = normalize(mix(diffuseDir, lp.reflectDir, material.specularProbability));
+            lp.refractDir = normalize(mix(-diffuseDir, lp.refractDir, 1.0 - material.Roughness));
+            bool followReflection = randomFloat(seed) <= lp.reflectWeight;
+            ray.Direction = followReflection ? lp.reflectDir : lp.refractDir;
+            ray.Origin = payload.WorldPosition + eps * payload.WorldNormal * sign(dot(payload.WorldNormal, ray.Direction));
+        }
         
         if (i >= 2) {
             float p = clamp(max(throughput.r, max(throughput.g, throughput.b)), 0.1, 1.0);

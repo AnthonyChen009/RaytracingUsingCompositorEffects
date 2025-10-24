@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var camera: Camera3D = $Camera3D
+@export var convertRGB: bool = false
 @onready var world_env: WorldEnvironment = $WorldEnvironment
 @onready var spheres = $Spheres.get_children()
 var template = preload("res://Scenes/template.tscn")
@@ -58,18 +59,23 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func srgb_to_linear_ch(x: float) -> float:
+	if not convertRGB:
+		return x
+		
 	if x <= 0.04045:
 		return x / 12.92
 	else:
 		return pow((x + 0.055) / 1.055, 2.4)
 
 func srgb_to_linear(c: Color) -> Color:
-	return Color(
-		srgb_to_linear_ch(c.r),
-		srgb_to_linear_ch(c.g),
-		srgb_to_linear_ch(c.b),
-		c.a
-	)
+	if convertRGB:
+		return Color(
+			srgb_to_linear_ch(c.r),
+			srgb_to_linear_ch(c.g),
+			srgb_to_linear_ch(c.b),
+			c.a
+		)
+	return c
 
 
 
@@ -93,7 +99,12 @@ func _updateScene():
 				Vector3(srgb_to_linear_ch(sphere.mesh.material.emission.r), 
 						srgb_to_linear_ch(sphere.mesh.material.emission.g), 
 						srgb_to_linear_ch(sphere.mesh.material.emission.b)),
-				sphere.mesh.material.emission_energy_multiplier, sphere.specular_probability)
+						sphere.mesh.material.emission_energy_multiplier, sphere.specular_probability, sphere.is_glass, sphere.ior, 
+				Vector3(srgb_to_linear_ch(sphere.absorbtion.r), 
+						srgb_to_linear_ch(sphere.absorbtion.g), 
+						srgb_to_linear_ch(sphere.absorbtion.b)),
+						sphere.absorbtion_power
+				)
 			)
 	for cube : RtCube in $Cubes.get_children():
 		if cube.visible:
@@ -109,7 +120,12 @@ func _updateScene():
 				Vector3(srgb_to_linear_ch(cube.mesh.material.emission.r), 
 						srgb_to_linear_ch(cube.mesh.material.emission.g), 
 						srgb_to_linear_ch(cube.mesh.material.emission.b)),
-				cube.mesh.material.emission_energy_multiplier, cube.specular_probability)
+				cube.mesh.material.emission_energy_multiplier, cube.specular_probability, cube.is_glass, cube.ior,
+				Vector3(srgb_to_linear_ch(cube.absorbtion.r), 
+						srgb_to_linear_ch(cube.absorbtion.g), 
+						srgb_to_linear_ch(cube.absorbtion.b)),
+						cube.absorbtion_power
+				)
 			)
 	
 	new_Scene.spheres = spheresArray

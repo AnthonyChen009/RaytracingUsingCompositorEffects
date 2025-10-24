@@ -47,6 +47,7 @@ layout_mode = 2
 [node name="RadiusSlider" type="SpinBox" parent="HBoxContainer2"]
 custom_minimum_size = Vector2(267.689, 0)
 layout_mode = 2
+step = 0.5
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer2"]

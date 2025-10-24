@@ -287,12 +287,13 @@ func _render_callback(p_effect_callback_type, p_render_data) -> void:
 						float(c.material_index)
 					])
 				
-				for m in rt_scene.materials:
+				for m:RTMaterial in rt_scene.materials:
 					material_data.append_array([
 					m.albedo.x, m.albedo.y, m.albedo.z, m.roughness,
 					m.metallic, 0.0, 0.0, 0.0, 
 					m.emission_color.x, m.emission_color.y, m.emission_color.z,
-					m.emission_power, m.specular_probability, 0.0, 0.0, 0.0
+					m.emission_power, m.specular_probability, float(m.is_glass), m.ior, m.absorbtion_strength,
+					m.absorbtion.x, m.absorbtion.y, m.absorbtion.z, 0.0
 				])
 				var sphere_data_byte_arr: PackedByteArray = sphere_data.to_byte_array()
 				var cube_data_byte_arr: PackedByteArray = cube_data.to_byte_array()

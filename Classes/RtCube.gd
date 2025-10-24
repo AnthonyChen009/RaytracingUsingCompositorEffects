@@ -10,6 +10,11 @@ class_name RtCube extends MeshInstance3D
 @export var emission_color: Color = Color(1, 1, 1, 1) : set = _set_emission_color
 @export_range(0.0, 1000000.0, 0.001) var emission_power: float = 0.0 : set = _set_emission_power
 @export_range(0.0, 1.0, 0.001) var specular_probability: float = 0
+@export_range(1.0, 3.0, 0.01) var ior: float = 1.0
+@export var is_glass: bool = false
+@export var absorbtion: Color = Color(0, 0, 0, 1) : set = _set_emission_color
+@export var absorbtion_power: float = 1.0
+
 
 var _mat: StandardMaterial3D
 var cube: BoxMesh
